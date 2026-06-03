@@ -19,6 +19,65 @@ void savestudent(student st){
 }
 
 
+// Add students file
+
+void addStudent(){
+    student st;
+    cout<< "Enter Student ID :";
+    cin>>st.id;
+
+    cout<< "Enter Student Name :";
+    cin>>st.name;
+
+    cout<< "Enter Student Age :";
+    cin>>st.age;
+
+    savestudent(st);
+    cout<<"Student added successfully!"<<endl;
+}
+
+// student data view
+
+void viewStudent(){
+    ifstream file("student.txt");
+    student st;
+
+    cout<<"\t Student list \n";
+    
+    while(file>>st.id>>st.name>>st.age){
+        cout<<"ID: "<<st.id<<"Name:"<<st.name<<"Age:"<<st.age<<endl;
+    }
+    file.close();
+}
+
+
+// search student data
+
+void searchStudent(){
+    int id;
+    cout<<"Enter student ID to search: ";
+    cin>>id;
+
+    ifstream file("student.txt");
+    student st;
+    bool found = false;
+    
+    while(file>>st.id>>st.name>>st.age){
+        if(st.id == id){
+            cout<<"Found Student - "<<"ID: "<<st.id<<" Name: "<<st.name<<" Age: "<<st.age<<endl;
+            found = true;
+            break;
+        }
+    }
+    if(!found){
+        cout<<"Student not found!"<<endl;
+    }
+    file.close();
+}
+
+
+
+
 
 //Menu
 int main(){
@@ -33,7 +92,6 @@ int main(){
     cin>>choice;
 
     
-
 
     return 0;
 }
