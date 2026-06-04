@@ -4,6 +4,8 @@
 using namespace std;
 
 
+
+
 struct student{
     int id;
     string name;
@@ -11,6 +13,19 @@ struct student{
 };
 
 //save student files
+
+bool userExists(int id){
+    student st;
+
+    ifstream file("student.txt");
+    while(file>>st.id>>st.name>>st.age){
+        if(st.id == id){
+            return true; // Student with the given ID already exists
+        }
+    }
+    file.close();
+    return false;    // Student with the given ID does not exist
+}
 
 void savestudent(student st){
     ofstream file("student.txt", ios::app);
@@ -25,6 +40,11 @@ void addStudent(){
     student st;
     cout<< "Enter Student ID (positive integer):";
     cin>>st.id;
+
+    if(userExists(st.id)){
+        cout<<"Student with ID "<<st.id<<" already exists. Please use a different ID."<<endl;
+        return; // Exit the function if the student ID already exists
+    }
 
     cout<< "Enter Student Name :";
     cin>>st.name;
