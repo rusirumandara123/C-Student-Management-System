@@ -110,6 +110,47 @@ void deleteStudent(){
 
 }
 
+void updateStudent(){
+    int updateId;
+    cout<<"Enter student ID to update: ";
+    cin>>updateId;
+
+    ifstream file("student.txt");
+    ofstream temp("temp.txt");
+    student st;
+
+    bool found = false;
+
+    while(file>>st.id>>st.name>>st.age){
+        if(st.id == updateId){
+            found = true;
+            cout<<"Enter new name: ";
+            cin>>st.name;
+            cout<<"Enter new age: ";
+            cin>>st.age;
+
+
+        }
+        temp<<st.id<<" "<<st.name<<" "<<st.age<<endl; // Write all students to temp file (including updated student)
+
+    }
+
+    file.close();
+    temp.close();
+
+    remove("student.txt");
+    rename("temp.txt","student.txt");
+
+    if(found){
+        cout<<"Student updated successfully!"<<endl;
+    } else {
+        cout<<"Student not found!"<<endl;
+    }
+   
+    
+
+}
+
 
 //Menu
 int main(){
@@ -123,7 +164,8 @@ int main(){
     cout<<"2. View Student"<<endl;
     cout<<"3. Search Student"<<endl;
     cout<<"4. Delete Student"<<endl;
-    cout<<"5. Exit"<<endl;
+    cout<<"5. Update Student"<<endl;
+    cout<<"0. Exit"<<endl;
     cout<<"Enter your choice: ";
     cin>>choice;
 
@@ -147,6 +189,10 @@ int main(){
         break;
 
         case 5:
+        updateStudent();
+        break;
+
+        case 0:
         cout<<"Exiting the program. Goodbye!"<<endl;
         break;
 
@@ -158,7 +204,7 @@ int main(){
 
 
       }
-    } while(choice != 5);
+    } while(choice != 0);
 
     return 0;
 }
