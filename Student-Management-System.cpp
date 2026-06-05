@@ -171,6 +171,20 @@ void updateStudent(){
 
 }
 
+void totalStudents(){
+    ifstream file("student.txt");
+    student st;
+    int count =0;
+
+    while(file>>st.id>>st.name>>st.age){
+        count++;
+   }
+
+   file.close();
+   cout<<"Total number of students: "<<count<<endl;
+
+}
+
 
 //Menu
 int main(){
@@ -185,6 +199,7 @@ int main(){
     cout<<"3. Search Student"<<endl;
     cout<<"4. Delete Student"<<endl;
     cout<<"5. Update Student"<<endl;
+    cout<<"6. Total Students"<<endl;
     cout<<"0. Exit"<<endl;
     cout<<"Enter your choice: ";
     cin>>choice;
@@ -210,6 +225,10 @@ int main(){
 
         case 5:
         updateStudent();
+        break;
+
+        case 6:
+        totalStudents();
         break;
 
         case 0:
