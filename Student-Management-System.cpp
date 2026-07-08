@@ -15,34 +15,49 @@ struct student{
 //User name and password for login
 
 bool registerUser(){
+
     string username, password;
+    bool exists;
 
-   cout<<"Create Username:";
-   cin>>username;
+    do{
 
-   cout<<"Create Password:";
-   cin>>password;
+        exists = false;
 
-   ifstream check("user.txt");
-   string u,p;
+        cout << "Create Username: ";
+        cin >> username;
 
-   while(check>>u>>p){
-    if(u == username){
-        cout<<"Username already exists. Please choose a different username."<<endl;
+        ifstream check("user.txt");
+
+        string u, p;
+
+        while(check >> u >> p){
+
+            if(u == username){
+
+                cout << "Username already exists!" << endl;
+                cout << "Please enter another username.\n\n";
+
+                exists = true;
+                break;
+            }
+        }
+
         check.close();
-        return false; 
-    }
-   }
 
-   check.close();
+    }while(exists);
+
+    cout << "Create Password: ";
+    cin >> password;
 
     ofstream file("user.txt", ios::app);
-    file<<username<<" "<<password<<endl;
+
+    file << username << " " << password << endl;
+
     file.close();
 
-    cout<<"User registered successfully!"<<endl;
-    return true;
+    cout << "Registration Successful!" << endl;
 
+    return true;
 }
 
 
