@@ -1,87 +1,122 @@
 # 📚 Student Management System (C++)
 
-A simple command-line Student Management System built using C++. This project demonstrates fundamental programming concepts such as structures, functions, file handling, loops, and searching algorithms.
+A console-based Student Management System developed using C++. This project demonstrates file handling, user authentication, CRUD operations, and menu-driven programming concepts.
+
+---
 
 ## 🚀 Features
 
-✅ Add new student records
+### 🔐 User Authentication
+- User Registration
+- User Login
+- Duplicate Username Validation
+- Login Required to Access Student Management System
 
-✅ View all student records
-
-✅ Search students by ID
-
-✅ Store data permanently using text files
-
-✅ User-friendly command-line interface
+### 👨‍🎓 Student Management
+- Add Student
+- View All Students
+- Search Student by ID
+- Update Student Information
+- Delete Student
+- Total Student Count
+- Duplicate Student ID Validation
 
 ---
 
-# 🛠 Technologies Used
+## 🛠 Technologies Used
 
 - C++
-- Standard Template Library (STL)
 - File Handling (`fstream`)
 - Structures (`struct`)
 - Functions
-- Loops & Conditions
+- Loops
+- Conditional Statements
+- Temporary File Handling
+- Menu-Driven Programming
 
 ---
 
-# 📂 Project Structure
+## 📂 Project Structure
 
 ```
 Student-Management-System/
 │
-├── Student-Management-System.cpp
+├── main.cpp
 ├── student.txt
+├── user.txt
+├── temp.txt (created automatically)
 └── README.md
 ```
 
 ---
 
-# 📖 Program Modules
+## 🔑 Login System
 
-## 1. Student Structure
+Before accessing the Student Management Menu, users must log in.
 
-Stores student information.
-
-```cpp
-struct student{
-    int id;
-    string name;
-    int age;
-};
+### Registration
+```
+Create Username
+Create Password
 ```
 
-### Fields
+✔ Duplicate usernames are not allowed.
 
-| Field | Type | Description |
-|---------|---------|---------|
-| id | int | Student ID |
-| name | string | Student Name |
-| age | int | Student Age |
+### Login
+```
+Username
+Password
+```
+
+Only registered users can access the system.
 
 ---
 
-## 2. Save Student
+## 📋 Main Menu
 
-Function:
-
-```cpp
-void savestudent(student st)
+```
+1. Register User
+2. Login User
+0. Exit
 ```
 
-### Purpose
+After successful login:
 
-Saves student records into:
-
-```text
-student.txt
+```
+1. Add Student
+2. View Student
+3. Search Student
+4. Delete Student
+5. Update Student
+6. Total Students
+0. Exit
 ```
 
-Example:
+---
 
-```text
+## 💾 Data Storage
+
+### user.txt
+
+Stores registered users.
+
+Example
+
+```
+admin 1234
+kamal 1111
+nimal 2222
+```
+
+---
+
+### student.txt
+
+Stores student information.
+
+Example
+
+```
 101 Kamal 20
 102 Nimal 22
 103 Sunil 19
@@ -89,210 +124,116 @@ Example:
 
 ---
 
-## 3. Add Student
+## ⚙️ How to Compile
 
-Function:
-
-```cpp
-void addStudent()
-```
-
-### Purpose
-
-Collects student details from the user and stores them in the file.
-
-### Example
-
-```text
-Enter Student ID: 101
-Enter Student Name: Kamal
-Enter Student Age: 20
-
-Student added successfully!
-```
-
----
-
-## 4. View Students
-
-Function:
-
-```cpp
-void viewStudent()
-```
-
-### Purpose
-
-Displays all student records stored in the file.
-
-### Example Output
-
-```text
---- Student List ---
-
-ID: 101 | Name: Kamal | Age: 20
-ID: 102 | Name: Nimal | Age: 22
-```
-
----
-
-## 5. Search Student
-
-Function:
-
-```cpp
-void searchStudent()
-```
-
-### Purpose
-
-Searches for a student using the Student ID.
-
-### Example
-
-Input:
-
-```text
-Enter student ID to search: 101
-```
-
-Output:
-
-```text
-Found Student -
-ID: 101
-Name: Kamal
-Age: 20
-```
-
-If not found:
-
-```text
-Student not found!
-```
-
----
-
-# 📋 Program Menu
-
-```text
-Welcome to Student Management System
-
-1. Add Student
-2. View Student
-3. Search Student
-0. Exit
-```
-
----
-
-# ⚙️ Compilation
-
-## Linux / MacOS
+### Windows (MinGW)
 
 ```bash
-g++ Student-Management-System.cpp -o student
+g++ main.cpp -o StudentManagement.exe
+StudentManagement.exe
+```
+
+### Linux
+
+```bash
+g++ main.cpp -o student
 ./student
 ```
 
-## Windows (MinGW)
-
-```bash
-g++ Student-Management-System.cpp -o student.exe
-student.exe
-```
-
 ---
 
-# 💾 File Storage
+## 📌 Concepts Covered
 
-The application automatically creates:
-
-```text
-student.txt
-```
-
-All student records are stored permanently in this file.
-
----
-
-# 🧠 Concepts Demonstrated
-
-This project demonstrates:
-
+- C++ Functions
 - Structures
-- Functions
 - File Handling
-- Search Algorithms
-- Input / Output Operations
-- Data Persistence
-- Menu-Driven Programming
+- Authentication System
+- CRUD Operations
+- Searching Algorithms
+- Duplicate Validation
+- Temporary File Technique
+- Menu Driven Programs
 
 ---
 
-# 🔍 Sample Workflow
+## 🔄 CRUD Operations
 
-```text
-1. Add Student
-   ↓
-Save to student.txt
-   ↓
-View Students
-   ↓
-Search Student by ID
+✔ Create Student
+
+✔ Read Student
+
+✔ Update Student
+
+✔ Delete Student
+
+---
+
+## 🎯 Future Improvements
+
+- Password Encryption
+- Password Hidden Input
+- Multiple Word Student Names
+- Sort Students by ID
+- Sort Students by Name
+- Student Marks Management
+- GPA Calculator
+- SQLite Database
+- Object-Oriented Version
+- GUI Version (Qt)
+- HTML/CSS Frontend
+- Admin Dashboard
+
+---
+
+## 📸 Sample Program Flow
+
+```
+Start
+   │
+   ▼
+Register User
+   │
+   ▼
+Login User
+   │
+   ▼
+Student Management Menu
+   │
+   ├── Add Student
+   ├── View Student
+   ├── Search Student
+   ├── Update Student
+   ├── Delete Student
+   └── Total Students
 ```
 
 ---
 
-# 🚀 Future Improvements
+## 👨‍💻 Author
 
-Planned features:
+**Rusiru Mandara**
 
-- Update Student Records
-- Delete Student Records
-- Duplicate ID Validation
-- Multiple Word Names
-- Sorting Students
-- Student Marks Management
-- Login System
-- OOP Version using Classes
-- CSV Database Support
-- GUI Version (Qt)
+- C++ Developer (Beginner to Intermediate)
+- Cybersecurity Enthusiast
+- Passionate about Building Console Applications
 
 ---
 
-# 🐛 Known Limitations
+## ⭐ Learning Outcomes
 
-- Student names cannot contain spaces.
-- Duplicate IDs are allowed.
-- No delete functionality.
-- No update functionality.
-- No input validation.
+This project helped practice:
 
----
-
-# 📈 Learning Outcomes
-
-After completing this project, beginners will understand:
-
-- How to use structures
-- How file handling works
-- How search operations work
-- How to build menu-driven applications
-- How to organize a GitHub project
+- Authentication Systems
+- File Handling
+- Student Record Management
+- Searching & Validation
+- Temporary File Processing
+- C++ Programming Fundamentals
 
 ---
 
-# 👨‍💻 Author
+## 📜 License
 
-Rusiru Mandara
+This project is licensed under the MIT License.
 
-Student Developer | Learning C++ & Cybersecurity
-
----
-
-# 📜 License
-
-This project is released under the MIT License.
-
-Feel free to use, modify, and distribute it for educational purposes.
+Feel free to use, modify, and improve this project for educational purposes.
