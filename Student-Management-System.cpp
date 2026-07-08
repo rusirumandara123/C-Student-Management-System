@@ -12,6 +12,83 @@ struct student{
     int age;
 };
 
+//User name and password for login
+
+bool registerUser(){
+
+    string username, password;
+    bool exists;
+
+    do{
+
+        exists = false;
+
+        cout << "Create Username: ";
+        cin >> username;
+
+        ifstream check("user.txt");
+
+        string u, p;
+
+        while(check >> u >> p){
+
+            if(u == username){
+
+                cout << "Username already exists!" << endl;
+                cout << "Please enter another username.\n\n";
+
+                exists = true;
+                break;
+            }
+        }
+
+        check.close();
+
+    }while(exists);
+
+    cout << "Create Password: ";
+    cin >> password;
+
+    ofstream file("user.txt", ios::app);
+
+    file << username << " " << password << endl;
+
+    file.close();
+
+    cout << "Registration Successful!" << endl;
+
+    return true;
+}
+
+
+
+bool loginUser(){
+    string username, password;
+
+    cout<<"Enter Username:";
+    cin>>username;
+
+    cout<<"Enter Password:";
+    cin>>password;
+
+    ifstream file("user.txt");
+    string u,p;
+
+    while(file>>u>>p){
+        if(u == username && p == password){
+            file.close();
+            cout<<"Login successful!"<<endl;
+            return true; 
+        }
+    }
+
+    file.close();
+
+    cout<<"Invalid username or password!"<<endl;
+    return false; 
+}
+
+
 //save student files
 
 bool userExists(int id){
@@ -20,11 +97,11 @@ bool userExists(int id){
     ifstream file("student.txt");
     while(file>>st.id>>st.name>>st.age){
         if(st.id == id){
-            return true; // Student with the given ID already exists
+            return true; 
         }
     }
     file.close();
-    return false;    // Student with the given ID does not exist
+    return false;    
 }
 
 void savestudent(student st){
@@ -43,7 +120,7 @@ void addStudent(){
 
     if(userExists(st.id)){
         cout<<"Student with ID "<<st.id<<" already exists. Please use a different ID."<<endl;
-        return; // Exit the function if the student ID already exists
+        return; 
     }
 
     cout<< "Enter Student Name :";
@@ -111,16 +188,16 @@ void deleteStudent(){
     while(file>>st.id>>st.name>>st.age){
         if(st.id == deletId){
             found = true;
-            continue; // Skip writing this student to temp file
+            continue; 
         }
-        temp<<st.id<<" "<<st.name<<" "<<st.age<<endl; // Write other students to temp file
+        temp<<st.id<<" "<<st.name<<" "<<st.age<<endl; 
 
     }
     file.close();
     temp.close();
 
-    remove("student.txt"); // Delete original file
-    rename("temp.txt", "student.txt"); // Rename temp file to original file name
+    remove("student.txt"); 
+    rename("temp.txt", "student.txt"); 
 
     if(found){
         cout<<"Student deleted successfully!"<<endl;
@@ -151,8 +228,7 @@ void updateStudent(){
 
 
         }
-        temp<<st.id<<" "<<st.name<<" "<<st.age<<endl; // Write all students to temp file (including updated student)
-
+        temp<<st.id<<" "<<st.name<<" "<<st.age<<endl; 
     }
 
     file.close();
@@ -188,6 +264,36 @@ void totalStudents(){
 
 //Menu
 int main(){
+
+    bool accessGranted = false;
+
+    cout<<"1. Register User"<<endl;
+    cout<<"2. Login User"<<endl;
+    cout<<"0. Exit"<<endl;
+    int userchoice;
+
+    cout<<"Enter your choice: ";
+    cin>>userchoice;
+
+    if(userchoice == 1){
+
+    registerUser();
+
+    cout << "\nPlease login to continue.\n";
+
+    return main();    
+}
+else if(userchoice == 2){
+
+    accessGranted = loginUser();
+
+}
+else{
+
+    return 0;
+
+}
+    
 
     int choice;
 
