@@ -287,6 +287,11 @@ else if(userchoice == 2){
 
     accessGranted = loginUser();
 
+    if(!accessGranted){
+        cout << "Access denied!" << endl;
+        return 0;
+    }
+
 }
 else{
 
